@@ -1,0 +1,2 @@
+This directory contains placeholder images for the Union Shop app.
+Images will be added later or loaded from network sources.
