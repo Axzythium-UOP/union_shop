@@ -133,7 +133,7 @@ Your objective is to reimplement as many features from the existing [Union Shop 
 
 The table below is an almost comprehensive list of features present on the website, sorted by difficulty. Each feature has a corresponding percentage value indicating its weight in the 30% application mark and a reference link to the relevant page on the actual website.
 
-⚠️ Note that this assessment focuses on functionality over visual design (do not spend a lot of time making it look exactly like the real website).
+⚠️ Note that this assessment focuses on functionality over visual design (do not spend a lot of time making it look exactly like the real website). You do not have to list the exact same products or collections as the real website. You are also encouraged to use copyright-free or AI-generated images instead of downloading images from the real website.
 
 | Feature | Description | Marks (%) | Reference |
 |---------|-------------|-----------|-----------|
@@ -162,7 +162,7 @@ The table below is an almost comprehensive list of features present on the websi
 
 Below are explanations for some of the terminology used in the table:
 
-***Hardcoded data** refers to data that is written directly into your Flutter code. These are fixed values rather than data loaded from external sources like APIs, databases, or other services.
+***Hardcoded data** refers to data (text or images) that is directly written into your code files rather than being fetched from a database or external service. For example, you can create a list of products with an AI-generated image and text descriptions directly in your Dart code instead of retrieving them from a backend.
 
 ***Dummy data** is data that is often hardcoded or (AI) generated for display or testing purposes. It is not meant to represent real-world data stored in your services.
 
@@ -176,7 +176,7 @@ The table below outlines the aspects that will be evaluated and the mark (from t
 
 | Aspect | Description | Marks (%) |
 |--------|-------------|-----------|
-| Git | Regular, small, meaningful commits to your repository throughout development; clear commit messages | 8% |
+| Git | Regular, small, meaningful commits* to your repository throughout development; clear commit messages | 8% |
 | README | A comprehensive, well-formatted and accurate README file* | 5% |
 | Testing | Tests covering all or almost all of the application; passing tests; evidence of TDD* | 6% |
 | External Services* | Integration and utilization of cloud services | 6% |
@@ -185,11 +185,13 @@ The table below outlines the aspects that will be evaluated and the mark (from t
 
 Below are some explanations for the terminology used in the table:
 
+***Regular, small, meaningful commits**: [worksheet 2](https://manighahrmani.github.io/sandwich_shop/worksheet-2.html) onwards on the [Flutter Course homepage](https://manighahrmani.github.io/sandwich_shop/) have demonstrated how to use Git effectively. You need to follow the practice taught in the worksheets.
+
 ***README**: Refer to [worksheet 4](https://manighahrmani.github.io/sandwich_shop/worksheet-4.html#writing-a-readme) for guidance on writing a good README file.
 
 ***TDD** stands for Test-Driven Development. It is a software development approach where tests are written before the actual code implementation. To get the mark for TDD, you need have written tests before implementing the corresponding features. Ensure that your commit history reflects this practice.
 
-***External Services** refer to third-party cloud services like Firebase or Azure that your application integrates with. This could include services like user authentication, database, or hosting the application live on web. To achieve full marks, you must demonstrate the integration of at least two separate external services. You are only awarded marks if your README documents this integration and explains how it is used in your application (e.g.., provide a live link to the website if you have hosted it).
+***External Services** refer to third-party cloud services like Firebase or Azure that your application integrates with. This could include services like user authentication, database, or hosting the application live on web. To get marks for this, you must integrate at **least two** separate external services. You are only awarded marks if your README documents this integration and explains how it is used in your application (e.g., provide a live link to the website if you have hosted it).
 
 ## Submission
 
