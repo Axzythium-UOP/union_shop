@@ -42,6 +42,10 @@ class CustomHeader extends StatelessWidget implements PreferredSizeWidget {
     Navigator.pushNamed(context, '/about_us');
   }
 
+  void _goCollections(BuildContext context) {
+    Navigator.pushNamed(context, '/collections');
+  }
+
   static void _noop() {}
 
   @override
@@ -124,64 +128,80 @@ class CustomHeader extends StatelessWidget implements PreferredSizeWidget {
                               side: BorderSide(color: Color(0xFF4d2963)),
                             ),
                           ),
+                          child: const Text('Collections'),
+                        ),
+                        const SizedBox(width: 20),
+                        ElevatedButton(
+                          onPressed: () => _goCollections(context),
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.white,
+                            foregroundColor: const Color(0xFF4d2963),
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 12, vertical: 6),
+                            textStyle: const TextStyle(fontSize: 12),
+                            shape: const RoundedRectangleBorder(
+                              borderRadius: BorderRadius.zero,
+                              side: BorderSide(color: Color(0xFF4d2963)),
+                            ),
+                          ),
                           child: const Text('HOME'),
                         ),
                         const SizedBox(width: 10),
                         ConstrainedBox(
                           constraints: const BoxConstraints(maxWidth: 600),
-                          child: Row(
+                          child: const Row(
                             mainAxisSize: MainAxisSize.min,
                             children: [
                               IconButton(
-                                icon: const Icon(
+                                icon: Icon(
                                   Icons.search,
                                   size: 18,
                                   color: Colors.grey,
                                 ),
-                                padding: const EdgeInsets.all(8),
-                                constraints: const BoxConstraints(
+                                padding: EdgeInsets.all(8),
+                                constraints: BoxConstraints(
                                   minWidth: 32,
                                   minHeight: 32,
                                 ),
                                 onPressed: _noop,
                               ),
-                              const SizedBox(width: 8),
+                              SizedBox(width: 8),
                               IconButton(
-                                icon: const Icon(
+                                icon: Icon(
                                   Icons.person_outline,
                                   size: 18,
                                   color: Colors.grey,
                                 ),
-                                padding: const EdgeInsets.all(8),
-                                constraints: const BoxConstraints(
+                                padding: EdgeInsets.all(8),
+                                constraints: BoxConstraints(
                                   minWidth: 32,
                                   minHeight: 32,
                                 ),
                                 onPressed: _noop,
                               ),
-                              const SizedBox(width: 8),
+                              SizedBox(width: 8),
                               IconButton(
-                                icon: const Icon(
+                                icon: Icon(
                                   Icons.shopping_bag_outlined,
                                   size: 18,
                                   color: Colors.grey,
                                 ),
-                                padding: const EdgeInsets.all(8),
-                                constraints: const BoxConstraints(
+                                padding: EdgeInsets.all(8),
+                                constraints: BoxConstraints(
                                   minWidth: 32,
                                   minHeight: 32,
                                 ),
                                 onPressed: _noop,
                               ),
-                              const SizedBox(width: 8),
+                              SizedBox(width: 8),
                               IconButton(
-                                icon: const Icon(
+                                icon: Icon(
                                   Icons.menu,
                                   size: 18,
                                   color: Colors.grey,
                                 ),
-                                padding: const EdgeInsets.all(8),
-                                constraints: const BoxConstraints(
+                                padding: EdgeInsets.all(8),
+                                constraints: BoxConstraints(
                                   minWidth: 32,
                                   minHeight: 32,
                                 ),
