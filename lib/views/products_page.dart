@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:union_shop/widgets/widgets.dart';
+import 'product_details_page.dart';
 
 class ProductsPageScreen extends StatelessWidget {
   const ProductsPageScreen({super.key});
@@ -39,24 +40,32 @@ class ProductsPageScreen extends StatelessWidget {
                           price: '£10.00',
                           imageUrl:
                               'https://shop.upsu.net/cdn/shop/files/PortsmouthCityMagnet1_1024x1024@2x.jpg?v=1752230282',
+                          description:
+                              'A decorative magnet featuring the UOP design — perfect for fridges and lockers.',
                         ),
                         ProductCard(
                           title: 'UOP Cap',
                           price: '£15.00',
                           imageUrl:
                               'https://shop.upsu.net/cdn/shop/products/Cap-Purple_1024x1024@2x.jpg?v=1742201981',
+                          description:
+                              'A stylish cap with an embroidered UOP logo — adjustable and comfortable for everyday wear.',
                         ),
                         ProductCard(
                           title: 'UOP T-shirt',
                           price: '£20.00',
                           imageUrl:
                               'https://shop.upsu.net/cdn/shop/files/Sage_T-shirt_1024x1024@2x.png?v=1759827236',
+                          description:
+                              'Soft cotton T-shirt with UOP branding — comfortable and suitable for everyday use.',
                         ),
                         ProductCard(
                           title: 'UOP Tote Bag',
                           price: '£25.00',
                           imageUrl:
                               'https://shop.upsu.net/cdn/shop/products/cottonshopper_1024x1024@2x.jpg?v=1657540427',
+                          description:
+                              'Durable cotton tote bag with UOP print — great for carrying books and daily essentials.',
                         ),
                       ],
                     ),
@@ -76,19 +85,30 @@ class ProductCard extends StatelessWidget {
   final String title;
   final String price;
   final String imageUrl;
-
+  final String description;
   const ProductCard({
     super.key,
     required this.title,
     required this.price,
     required this.imageUrl,
+    required this.description,
   });
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.pushNamed(context, '/product');
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => ProductDetailsPage(
+              title: title,
+              price: price,
+              imageUrl: imageUrl,
+              description: description,
+            ),
+          ),
+        );
       },
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
