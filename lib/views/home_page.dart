@@ -161,24 +161,32 @@ class HomeScreen extends StatelessWidget {
                           price: '£10.00',
                           imageUrl:
                               'https://shop.upsu.net/cdn/shop/files/PortsmouthCityMagnet1_1024x1024@2x.jpg?v=1752230282',
+                          description:
+                              'A decorative magnet featuring the UOP design — perfect for fridges and lockers.',
                         ),
                         ProductCard(
                           title: 'UOP Cap',
                           price: '£15.00',
                           imageUrl:
                               'https://shop.upsu.net/cdn/shop/products/Cap-Purple_1024x1024@2x.jpg?v=1742201981',
+                          description:
+                              'A stylish cap with an embroidered UOP logo — adjustable and comfortable for everyday wear.',
                         ),
                         ProductCard(
                           title: 'UOP T-shirt',
                           price: '£20.00',
                           imageUrl:
                               'https://shop.upsu.net/cdn/shop/files/Sage_T-shirt_1024x1024@2x.png?v=1759827236',
+                          description:
+                              'Soft cotton T-shirt with UOP branding — comfortable and suitable for everyday use.',
                         ),
                         ProductCard(
                           title: 'UOP Tote Bag',
                           price: '£25.00',
                           imageUrl:
                               'https://shop.upsu.net/cdn/shop/products/cottonshopper_1024x1024@2x.jpg?v=1657540427',
+                          description:
+                              'Durable cotton tote bag with UOP print — great for carrying books and daily essentials.',
                         ),
                       ],
                     ),
@@ -195,59 +203,5 @@ class HomeScreen extends StatelessWidget {
   }
 }
 
-class ProductCard extends StatelessWidget {
-  final String title;
-  final String price;
-  final String imageUrl;
-
-  const ProductCard({
-    super.key,
-    required this.title,
-    required this.price,
-    required this.imageUrl,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        Navigator.pushNamed(context, '/product');
-      },
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Expanded(
-            child: Image.network(
-              imageUrl,
-              fit: BoxFit.cover,
-              errorBuilder: (context, error, stackTrace) {
-                return Container(
-                  color: Colors.grey[300],
-                  child: const Center(
-                    child: Icon(Icons.image_not_supported, color: Colors.grey),
-                  ),
-                );
-              },
-            ),
-          ),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const SizedBox(height: 4),
-              Text(
-                title,
-                style: const TextStyle(fontSize: 14, color: Colors.black),
-                maxLines: 2,
-              ),
-              const SizedBox(height: 4),
-              Text(
-                price,
-                style: const TextStyle(fontSize: 13, color: Colors.grey),
-              ),
-            ],
-          ),
-        ],
-      ),
-    );
-  }
-}
+// Using `ProductCard` from `products_page.dart` which includes `description` and
+// navigates to `ProductDetailsPage`.
