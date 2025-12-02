@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:union_shop/widgets/widgets.dart';
-import 'product_details_page.dart';
+import 'product_page.dart';
 
 class ProductsPageScreen extends StatelessWidget {
   const ProductsPageScreen({super.key});
@@ -101,7 +101,7 @@ class ProductCard extends StatelessWidget {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => ProductDetailsPage(
+            builder: (context) => ProductPage(
               title: title,
               price: price,
               imageUrl: imageUrl,

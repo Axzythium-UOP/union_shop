@@ -2,14 +2,27 @@ import 'package:flutter/material.dart';
 import 'package:union_shop/widgets/widgets.dart';
 
 class ProductPage extends StatelessWidget {
-  const ProductPage({super.key});
+  final String title;
+  final String price;
+  final String imageUrl;
+  final String description;
+
+  const ProductPage({
+    super.key,
+    this.title = 'UOP Cap',
+    this.price = '£9.00',
+    this.imageUrl =
+        'https://shop.upsu.net/cdn/shop/files/PortsmouthCityMagnet1_1024x1024@2x.jpg?v=1752230282',
+    this.description =
+        'This UOP Cap is a stylish and comfortable accessory perfect for showing off your University of Portsmouth pride. Made from high-quality materials, it features the UOP logo embroidered on the front. Whether you\'re on campus or out and about, this cap is a great way to complete your look.',
+  });
 
   void navigateToHome(BuildContext context) {
     Navigator.pushNamedAndRemoveUntil(context, '/', (route) => false);
   }
 
   void placeholderCallbackForButtons() {
-    // This is the event handler for buttons that don't work yet
+    // event handler for buttons that don't work yet
   }
 
   @override
@@ -34,7 +47,7 @@ class ProductPage extends StatelessWidget {
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(8),
                   child: Image.network(
-                    'https://shop.upsu.net/cdn/shop/files/PortsmouthCityMagnet1_1024x1024@2x.jpg?v=1752230282',
+                    imageUrl,
                     fit: BoxFit.cover,
                     errorBuilder: (context, error, stackTrace) {
                       return Container(
@@ -65,9 +78,9 @@ class ProductPage extends StatelessWidget {
               const SizedBox(height: 24),
 
               // Product name
-              const Text(
-                'UOP Cap',
-                style: TextStyle(
+              Text(
+                title,
+                style: const TextStyle(
                   fontSize: 28,
                   fontWeight: FontWeight.bold,
                   color: Colors.black,
@@ -77,9 +90,9 @@ class ProductPage extends StatelessWidget {
               const SizedBox(height: 12),
 
               // Product price
-              const Text(
-                '£9.00',
-                style: TextStyle(
+              Text(
+                price,
+                style: const TextStyle(
                   fontSize: 24,
                   fontWeight: FontWeight.bold,
                   color: Color(0xFF4d2963),
@@ -98,9 +111,9 @@ class ProductPage extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 8),
-              const Text(
-                'This UOP Cap is a stylish and comfortable accessory perfect for showing off your University of Portsmouth pride. Made from high-quality materials, it features the UOP logo embroidered on the front. Whether you\'re on campus or out and about, this cap is a great way to complete your look.',
-                style: TextStyle(
+              Text(
+                description,
+                style: const TextStyle(
                   fontSize: 16,
                   color: Colors.grey,
                   height: 1.5,
@@ -108,8 +121,8 @@ class ProductPage extends StatelessWidget {
               ),
             ],
           ),
-        ), // end product details container
-      ), // end SingleChildScrollView
+        ),
+      ),
       bottomNavigationBar: const FooterWidget(),
     );
   }
