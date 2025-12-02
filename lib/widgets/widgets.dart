@@ -120,22 +120,6 @@ class CustomHeader extends StatelessWidget implements PreferredSizeWidget {
                         ),
                         const SizedBox(width: 20),
                         ElevatedButton(
-                          onPressed: () => _goCollections(context),
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.white,
-                            foregroundColor: const Color(0xFF4d2963),
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 12, vertical: 6),
-                            textStyle: const TextStyle(fontSize: 12),
-                            shape: const RoundedRectangleBorder(
-                              borderRadius: BorderRadius.zero,
-                              side: BorderSide(color: Color(0xFF4d2963)),
-                            ),
-                          ),
-                          child: const Text('Collections'),
-                        ),
-                        const SizedBox(width: 20),
-                        ElevatedButton(
                           onPressed: () => _goHome(context),
                           style: ElevatedButton.styleFrom(
                             backgroundColor: Colors.white,
