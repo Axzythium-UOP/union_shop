@@ -50,6 +50,10 @@ class HomeScreen extends StatelessWidget {
     Navigator.pushNamed(context, '/about_us');
   }
 
+  void navigateToCollections(BuildContext context) {
+    Navigator.pushNamed(context, 'collections');
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

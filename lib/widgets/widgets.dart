@@ -116,7 +116,7 @@ class CustomHeader extends StatelessWidget implements PreferredSizeWidget {
                         ),
                         const SizedBox(width: 20),
                         ElevatedButton(
-                          onPressed: () => _goHome(context),
+                          onPressed: () => _goCollections(context),
                           style: ElevatedButton.styleFrom(
                             backgroundColor: Colors.white,
                             foregroundColor: const Color(0xFF4d2963),
@@ -132,7 +132,7 @@ class CustomHeader extends StatelessWidget implements PreferredSizeWidget {
                         ),
                         const SizedBox(width: 20),
                         ElevatedButton(
-                          onPressed: () => _goCollections(context),
+                          onPressed: () => _goHome(context),
                           style: ElevatedButton.styleFrom(
                             backgroundColor: Colors.white,
                             foregroundColor: const Color(0xFF4d2963),
