@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:union_shop/widgets/widgets.dart';
 
 class ProductPage extends StatelessWidget {
   const ProductPage({super.key});
@@ -180,7 +181,7 @@ class ProductPage extends StatelessWidget {
 
                   // Product name
                   const Text(
-                    'Placeholder Product Name',
+                    'UOP Cap',
                     style: TextStyle(
                       fontSize: 28,
                       fontWeight: FontWeight.bold,
@@ -192,7 +193,7 @@ class ProductPage extends StatelessWidget {
 
                   // Product price
                   const Text(
-                    '£15.00',
+                    '£9.00',
                     style: TextStyle(
                       fontSize: 24,
                       fontWeight: FontWeight.bold,
@@ -219,28 +220,14 @@ class ProductPage extends StatelessWidget {
                       color: Colors.grey,
                       height: 1.5,
                     ),
+                    ),
+                  ],
                   ),
-                ],
-              ),
-            ),
-
-            // Footer
-            Container(
-              width: double.infinity,
-              color: Colors.grey[50],
-              padding: const EdgeInsets.all(24),
-              child: const Text(
-                'Placeholder Footer',
-                style: TextStyle(
-                  color: Colors.grey,
-                  fontSize: 16,
-                  fontWeight: FontWeight.w600,
-                ),
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
+                ), // end product details container
+                ], // end Column children
+              ), // end Column
+              ), // end SingleChildScrollView
+              bottomNavigationBar: const FooterWidget(),
+            );
+            }
+          }
