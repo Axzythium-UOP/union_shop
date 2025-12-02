@@ -42,10 +42,6 @@ class CustomHeader extends StatelessWidget implements PreferredSizeWidget {
     Navigator.pushNamed(context, '/about_us');
   }
 
-  void _goCollections(BuildContext context) {
-    Navigator.pushNamed(context, '/collections');
-  }
-
    void _goAuthentication(BuildContext context) {
     Navigator.pushNamed(context, '/authentication');
   }
