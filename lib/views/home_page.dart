@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:union_shop/views/authentication_page.dart';
 import 'package:union_shop/views/product_page.dart';
 import 'package:union_shop/views/products_page.dart';
 import 'package:union_shop/views/about_us.dart';
@@ -26,6 +27,7 @@ class UnionShopApp extends StatelessWidget {
         '/products_page': (context) => const ProductsPageScreen(),
         '/about_us': (context) => const AboutUsScreen(),
         '/collections': (context) => const CollectionsScreen(),
+        '/authentication': (context) => const AuthenticatioScreen(),
       },
     );
   }
@@ -51,7 +53,11 @@ class HomeScreen extends StatelessWidget {
   }
 
   void navigateToCollections(BuildContext context) {
-    Navigator.pushNamed(context, 'collections');
+    Navigator.pushNamed(context, '/collections');
+  }
+
+  void navigateToAuthentication(BuildContext context) {
+    Navigator.pushNamed(context, '/authentication');
   }
 
   @override
@@ -94,23 +100,13 @@ class HomeScreen extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         const Text(
-                          'Placeholder Hero Title',
+                          'Sales',
                           style: TextStyle(
-                            fontSize: 32,
+                            fontSize: 80,
                             fontWeight: FontWeight.bold,
                             color: Colors.white,
                             height: 1.2,
                           ),
-                        ),
-                        const SizedBox(height: 16),
-                        const Text(
-                          "This is placeholder text for the hero section.",
-                          style: TextStyle(
-                            fontSize: 20,
-                            color: Colors.white,
-                            height: 1.5,
-                          ),
-                          textAlign: TextAlign.center,
                         ),
                         const SizedBox(height: 32),
                         ElevatedButton(

@@ -46,6 +46,10 @@ class CustomHeader extends StatelessWidget implements PreferredSizeWidget {
     Navigator.pushNamed(context, '/collections');
   }
 
+   void _goAuthentication(BuildContext context) {
+    Navigator.pushNamed(context, '/authentication');
+  }
+
   static void _noop() {}
 
   @override
@@ -61,7 +65,7 @@ class CustomHeader extends StatelessWidget implements PreferredSizeWidget {
             padding: const EdgeInsets.symmetric(vertical: 8),
             color: const Color(0xFF4d2963),
             child: const Text(
-              'Free shipping on orders over £30! ',
+              'Free shipping on orders over £30!',
               textAlign: TextAlign.center,
               style: TextStyle(color: Colors.white, fontSize: 16),
             ),
@@ -149,10 +153,10 @@ class CustomHeader extends StatelessWidget implements PreferredSizeWidget {
                         const SizedBox(width: 10),
                         ConstrainedBox(
                           constraints: const BoxConstraints(maxWidth: 600),
-                          child: const Row(
+                          child: Row(
                             mainAxisSize: MainAxisSize.min,
                             children: [
-                              IconButton(
+                              const IconButton(
                                 icon: Icon(
                                   Icons.search,
                                   size: 18,
@@ -165,22 +169,22 @@ class CustomHeader extends StatelessWidget implements PreferredSizeWidget {
                                 ),
                                 onPressed: _noop,
                               ),
-                              SizedBox(width: 8),
+                              const SizedBox(width: 8),
                               IconButton(
-                                icon: Icon(
+                                icon: const Icon(
                                   Icons.person_outline,
                                   size: 18,
                                   color: Colors.grey,
                                 ),
-                                padding: EdgeInsets.all(8),
-                                constraints: BoxConstraints(
+                                padding: const EdgeInsets.all(8),
+                                constraints: const BoxConstraints(
                                   minWidth: 32,
                                   minHeight: 32,
                                 ),
-                                onPressed: _noop,
+                                onPressed: () => _goAuthentication(context),
                               ),
-                              SizedBox(width: 8),
-                              IconButton(
+                              const SizedBox(width: 8),
+                              const IconButton(
                                 icon: Icon(
                                   Icons.shopping_bag_outlined,
                                   size: 18,
@@ -193,8 +197,8 @@ class CustomHeader extends StatelessWidget implements PreferredSizeWidget {
                                 ),
                                 onPressed: _noop,
                               ),
-                              SizedBox(width: 8),
-                              IconButton(
+                              const SizedBox(width: 8),
+                              const IconButton(
                                 icon: Icon(
                                   Icons.menu,
                                   size: 18,
