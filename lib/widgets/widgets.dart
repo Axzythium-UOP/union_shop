@@ -46,6 +46,10 @@ class CustomHeader extends StatelessWidget implements PreferredSizeWidget {
     Navigator.pushNamed(context, '/authentication');
   }
 
+    void _goCart(BuildContext context) {
+      Navigator.pushNamed(context, '/cart');
+    }
+
   static void _noop() {}
 
   @override
@@ -183,7 +187,7 @@ class CustomHeader extends StatelessWidget implements PreferredSizeWidget {
                                     minWidth: 32,
                                     minHeight: 32,
                                   ),
-                                  onPressed: _noop,
+                                  onPressed: () => _goCart(context),
                                 ),
                                 const SizedBox(width: 8),
                                 IconButton(

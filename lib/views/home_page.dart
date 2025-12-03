@@ -5,31 +5,37 @@ import 'package:union_shop/views/products_page.dart';
 import 'package:union_shop/views/about_us.dart';
 import 'package:union_shop/widgets/widgets.dart';
 import 'package:union_shop/views/collections.dart';
-
+import 'package:provider/provider.dart';
+import 'package:union_shop/providers/cart_provider.dart';
+import 'package:union_shop/views/cart.dart';
 
 class UnionShopApp extends StatelessWidget {
   const UnionShopApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Union Shop',
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFF4d2963)),
+    return ChangeNotifierProvider(
+      create: (_) => CartProvider(),
+      child: MaterialApp(
+        title: 'Union Shop',
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(
+          colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFF4d2963)),
+        ),
+        home: const HomeScreen(),
+        // By default, the app starts at the '/' route, which is the HomeScreen
+        initialRoute: '/',
+        // When navigating to '/product', build and return the ProductPage
+        // In your browser, try this link: http://localhost:49856/#/product
+        routes: {
+          '/product': (context) => const ProductPage(),
+          '/products_page': (context) => const ProductsPageScreen(),
+          '/about_us': (context) => const AboutUsScreen(),
+          '/collections': (context) => const CollectionsScreen(),
+          '/authentication': (context) => const AuthenticatioScreen(),
+          '/cart': (context) => const CartScreen(),
+        },
       ),
-      home: const HomeScreen(),
-      // By default, the app starts at the '/' route, which is the HomeScreen
-      initialRoute: '/',
-      // When navigating to '/product', build and return the ProductPage
-      // In your browser, try this link: http://localhost:49856/#/product
-      routes: {
-        '/product': (context) => const ProductPage(),
-        '/products_page': (context) => const ProductsPageScreen(),
-        '/about_us': (context) => const AboutUsScreen(),
-        '/collections': (context) => const CollectionsScreen(),
-        '/authentication': (context) => const AuthenticatioScreen(),
-      },
     );
   }
 }
@@ -60,8 +66,6 @@ class HomeScreen extends StatelessWidget {
   void navigateToAuthentication(BuildContext context) {
     Navigator.pushNamed(context, '/authentication');
   }
-
-
 
   @override
   Widget build(BuildContext context) {

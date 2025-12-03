@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:union_shop/widgets/widgets.dart';
+import 'package:provider/provider.dart';
+import 'package:union_shop/providers/cart_provider.dart';
 
 class ProductPage extends StatefulWidget {
   final String title;
@@ -33,6 +35,25 @@ class _ProductPageState extends State<ProductPage> {
     );
   }
 
+  void addToCart() {
+    final provider = Provider.of<CartProvider>(context, listen: false);
+    // Parse price string like '£9.00' -> 9.00
+    final priceStr = widget.price.replaceAll(RegExp(r'[^0-9\.]'), '');
+    final price = double.tryParse(priceStr) ?? 0.0;
+    provider.addItem(
+      title: widget.title,
+      imageUrl: widget.imageUrl,
+      size: selectedSize,
+      color: selectedColor,
+      price: price,
+      quantity: selectedQuantity,
+    );
+
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(content: Text('${widget.title} added to cart')),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -56,7 +77,8 @@ class _ProductPageState extends State<ProductPage> {
                     height: 300,
                     color: Colors.grey[300],
                     child: const Center(
-                      child: Icon(Icons.image_not_supported, size: 64, color: Colors.grey),
+                      child: Icon(Icons.image_not_supported,
+                          size: 64, color: Colors.grey),
                     ),
                   ),
                 ),
@@ -67,12 +89,16 @@ class _ProductPageState extends State<ProductPage> {
               // Product title and price (added back)
               Text(
                 widget.title,
-                style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+                style:
+                    const TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
               ),
               const SizedBox(height: 6),
               Text(
                 widget.price,
-                style: const TextStyle(fontSize: 18, color: Color(0xFF4d2963), fontWeight: FontWeight.w600),
+                style: const TextStyle(
+                    fontSize: 18,
+                    color: Color(0xFF4d2963),
+                    fontWeight: FontWeight.w600),
               ),
 
               const SizedBox(height: 18),
@@ -85,7 +111,8 @@ class _ProductPageState extends State<ProductPage> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const Text('Size', style: TextStyle(fontWeight: FontWeight.w600)),
+                        const Text('Size',
+                            style: TextStyle(fontWeight: FontWeight.w600)),
                         const SizedBox(height: 6),
                         DropdownButton<String>(
                           value: selectedSize,
@@ -94,7 +121,8 @@ class _ProductPageState extends State<ProductPage> {
                             if (val != null) setState(() => selectedSize = val);
                           },
                           items: ['S', 'M', 'L', 'XL']
-                              .map((s) => DropdownMenuItem(value: s, child: Text(s)))
+                              .map((s) =>
+                                  DropdownMenuItem(value: s, child: Text(s)))
                               .toList(),
                         ),
                       ],
@@ -107,16 +135,19 @@ class _ProductPageState extends State<ProductPage> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const Text('Color', style: TextStyle(fontWeight: FontWeight.w600)),
+                        const Text('Color',
+                            style: TextStyle(fontWeight: FontWeight.w600)),
                         const SizedBox(height: 6),
                         DropdownButton<String>(
                           value: selectedColor,
                           isExpanded: true,
                           onChanged: (val) {
-                            if (val != null) setState(() => selectedColor = val);
+                            if (val != null)
+                              setState(() => selectedColor = val);
                           },
                           items: ['Purple', 'Navy', 'White']
-                              .map((c) => DropdownMenuItem(value: c, child: Text(c)))
+                              .map((c) =>
+                                  DropdownMenuItem(value: c, child: Text(c)))
                               .toList(),
                         ),
                       ],
@@ -131,16 +162,19 @@ class _ProductPageState extends State<ProductPage> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const Text('Qty', style: TextStyle(fontWeight: FontWeight.w600)),
+                        const Text('Qty',
+                            style: TextStyle(fontWeight: FontWeight.w600)),
                         const SizedBox(height: 6),
                         DropdownButton<int>(
                           value: selectedQuantity,
                           isExpanded: true,
                           onChanged: (val) {
-                            if (val != null) setState(() => selectedQuantity = val);
+                            if (val != null)
+                              setState(() => selectedQuantity = val);
                           },
                           items: List.generate(10, (i) => i + 1)
-                              .map((n) => DropdownMenuItem(value: n, child: Text(n.toString())))
+                              .map((n) => DropdownMenuItem(
+                                  value: n, child: Text(n.toString())))
                               .toList(),
                         ),
                       ],
@@ -155,7 +189,7 @@ class _ProductPageState extends State<ProductPage> {
               SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(
-                  onPressed: placeholderCallback,
+                  onPressed: addToCart,
                   style: ElevatedButton.styleFrom(
                     backgroundColor: const Color(0xFF4d2963),
                     padding: const EdgeInsets.symmetric(vertical: 14),
@@ -172,7 +206,8 @@ class _ProductPageState extends State<ProductPage> {
               const SizedBox(height: 8),
               Text(
                 widget.description,
-                style: const TextStyle(fontSize: 15, color: Colors.grey, height: 1.4),
+                style: const TextStyle(
+                    fontSize: 15, color: Colors.grey, height: 1.4),
               ),
 
               const SizedBox(height: 40),
