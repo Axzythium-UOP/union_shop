@@ -60,4 +60,22 @@ class CartProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  
+  void increaseQuantity(String id, [int by = 1]) {
+    final item = _items[id];
+    if (item != null) {
+      item.quantity += by;
+      notifyListeners();
+    }
+  }
+
+  void decreaseQuantity(String id, [int by = 1]) {
+    final item = _items[id];
+    if (item != null) {
+      item.quantity -= by;
+      if (item.quantity <= 0) {
+        _items.remove(id);
+      }
+      notifyListeners();
+    }
+  }
+}
