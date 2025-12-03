@@ -115,7 +115,7 @@ class _ProductPageState extends State<ProductPage> {
                           onChanged: (val) {
                             if (val != null) setState(() => selectedColor = val);
                           },
-                          items: ['Black', 'Navy', 'White']
+                          items: ['Purple', 'Navy', 'White']
                               .map((c) => DropdownMenuItem(value: c, child: Text(c)))
                               .toList(),
                         ),
