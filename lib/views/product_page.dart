@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:union_shop/widgets/widgets.dart';
 
-class ProductPage extends StatelessWidget {
+class ProductPage extends StatefulWidget {
   final String title;
   final String price;
   final String imageUrl;
@@ -17,12 +17,20 @@ class ProductPage extends StatelessWidget {
         'This UOP Cap is a stylish and comfortable accessory perfect for showing off your University of Portsmouth pride. Made from high-quality materials, it features the UOP logo embroidered on the front. Whether you\'re on campus or out and about, this cap is a great way to complete your look.',
   });
 
-  void navigateToHome(BuildContext context) {
-    Navigator.pushNamedAndRemoveUntil(context, '/', (route) => false);
-  }
+  @override
+  State<ProductPage> createState() => _ProductPageState();
+}
 
-  void placeholderCallbackForButtons() {
-    // event handler for buttons that don't work yet
+class _ProductPageState extends State<ProductPage> {
+  String selectedSize = 'S';
+  String selectedColor = 'Purple';
+  int selectedQuantity = 1;
+
+  void placeholderCallback() {
+    // placeholder - buttons do not have to function
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(content: Text('Add to cart (placeholder)')),
+    );
   }
 
   @override
@@ -32,93 +40,142 @@ class ProductPage extends StatelessWidget {
       body: SingleChildScrollView(
         child: Container(
           color: Colors.white,
-          padding: const EdgeInsets.all(24),
+          padding: const EdgeInsets.all(20),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // Product image
-              Container(
-                height: 300,
-                width: double.infinity,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(8),
-                  color: Colors.grey[200],
-                ),
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(8),
-                  child: Image.network(
-                    imageUrl,
-                    fit: BoxFit.cover,
-                    errorBuilder: (context, error, stackTrace) {
-                      return Container(
-                        color: Colors.grey[300],
-                        child: const Center(
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Icon(
-                                Icons.image_not_supported,
-                                size: 64,
-                                color: Colors.grey,
-                              ),
-                              SizedBox(height: 8),
-                              Text(
-                                'Image unavailable',
-                                style: TextStyle(color: Colors.grey),
-                              ),
-                            ],
-                          ),
-                        ),
-                      );
-                    },
+              // product image
+              ClipRRect(
+                borderRadius: BorderRadius.circular(8),
+                child: Image.network(
+                  widget.imageUrl,
+                  height: 300,
+                  width: double.infinity,
+                  fit: BoxFit.cover,
+                  errorBuilder: (context, error, stackTrace) => Container(
+                    height: 300,
+                    color: Colors.grey[300],
+                    child: const Center(
+                      child: Icon(Icons.image_not_supported, size: 64, color: Colors.grey),
+                    ),
                   ),
                 ),
               ),
 
-              const SizedBox(height: 24),
+              const SizedBox(height: 18),
 
-              // Product name
+              // Product title and price (added back)
               Text(
-                title,
-                style: const TextStyle(
-                  fontSize: 28,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.black,
+                widget.title,
+                style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+              ),
+              const SizedBox(height: 6),
+              Text(
+                widget.price,
+                style: const TextStyle(fontSize: 18, color: Color(0xFF4d2963), fontWeight: FontWeight.w600),
+              ),
+
+              const SizedBox(height: 18),
+
+              // Options: size, color, quantity
+              Row(
+                children: [
+                  // Size
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const Text('Size', style: TextStyle(fontWeight: FontWeight.w600)),
+                        const SizedBox(height: 6),
+                        DropdownButton<String>(
+                          value: selectedSize,
+                          isExpanded: true,
+                          onChanged: (val) {
+                            if (val != null) setState(() => selectedSize = val);
+                          },
+                          items: ['S', 'M', 'L', 'XL']
+                              .map((s) => DropdownMenuItem(value: s, child: Text(s)))
+                              .toList(),
+                        ),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(width: 12),
+
+                  // Color
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const Text('Color', style: TextStyle(fontWeight: FontWeight.w600)),
+                        const SizedBox(height: 6),
+                        DropdownButton<String>(
+                          value: selectedColor,
+                          isExpanded: true,
+                          onChanged: (val) {
+                            if (val != null) setState(() => selectedColor = val);
+                          },
+                          items: ['Black', 'Navy', 'White']
+                              .map((c) => DropdownMenuItem(value: c, child: Text(c)))
+                              .toList(),
+                        ),
+                      ],
+                    ),
+                  ),
+
+                  const SizedBox(width: 12),
+
+                  // Quantity
+                  SizedBox(
+                    width: 100,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const Text('Qty', style: TextStyle(fontWeight: FontWeight.w600)),
+                        const SizedBox(height: 6),
+                        DropdownButton<int>(
+                          value: selectedQuantity,
+                          isExpanded: true,
+                          onChanged: (val) {
+                            if (val != null) setState(() => selectedQuantity = val);
+                          },
+                          items: List.generate(10, (i) => i + 1)
+                              .map((n) => DropdownMenuItem(value: n, child: Text(n.toString())))
+                              .toList(),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+
+              const SizedBox(height: 18),
+
+              // Add to cart
+              SizedBox(
+                width: double.infinity,
+                child: ElevatedButton(
+                  onPressed: placeholderCallback,
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: const Color(0xFF4d2963),
+                    padding: const EdgeInsets.symmetric(vertical: 14),
+                  ),
+                  child: const Text('Add to cart'),
                 ),
               ),
 
-              const SizedBox(height: 12),
-
-              // Product price
-              Text(
-                price,
-                style: const TextStyle(
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold,
-                  color: Color(0xFF4d2963),
-                ),
-              ),
-
-              const SizedBox(height: 24),
+              const SizedBox(height: 20),
 
               // Product description
-              const Text(
-                'Product Description',
-                style: TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.w600,
-                  color: Colors.black,
-                ),
-              ),
+              const Text('Product Description',
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600)),
               const SizedBox(height: 8),
               Text(
-                description,
-                style: const TextStyle(
-                  fontSize: 16,
-                  color: Colors.grey,
-                  height: 1.5,
-                ),
+                widget.description,
+                style: const TextStyle(fontSize: 15, color: Colors.grey, height: 1.4),
               ),
+
+              const SizedBox(height: 40),
             ],
           ),
         ),

@@ -36,12 +36,12 @@ class ProductsPageScreen extends StatelessWidget {
                       mainAxisSpacing: 48,
                       children: const [
                         ProductCard(
-                          title: 'UOP Magnet',
+                          title: 'UOP Hoodie',
                           price: '£10.00',
                           imageUrl:
-                              'https://shop.upsu.net/cdn/shop/files/PortsmouthCityMagnet1_1024x1024@2x.jpg?v=1752230282',
+                              'https://shop.upsu.net/cdn/shop/files/PurpleHoodieFinal.jpg?v=1742201957',
                           description:
-                              'A decorative magnet featuring the UOP design — perfect for fridges and lockers.',
+                              'A comfortable hoodie featuring the UOP design — perfect for staying warm and stylish.',
                         ),
                         ProductCard(
                           title: 'UOP Cap',
@@ -55,17 +55,17 @@ class ProductsPageScreen extends StatelessWidget {
                           title: 'UOP T-shirt',
                           price: '£20.00',
                           imageUrl:
-                              'https://shop.upsu.net/cdn/shop/files/Sage_T-shirt_1024x1024@2x.png?v=1759827236',
+                              'https://shop.upsu.net/cdn/shop/products/PurpleTshirtFinal_1024x1024@2x.png?v=1669713197',
                           description:
                               'Soft cotton T-shirt with UOP branding — comfortable and suitable for everyday use.',
                         ),
                         ProductCard(
-                          title: 'UOP Tote Bag',
+                          title: 'UOP Beanie',
                           price: '£25.00',
                           imageUrl:
-                              'https://shop.upsu.net/cdn/shop/products/cottonshopper_1024x1024@2x.jpg?v=1657540427',
+                              'https://shop.upsu.net/cdn/shop/products/Beanie-Purple_1024x1024@2x.jpg?v=1742201998',
                           description:
-                              'Durable cotton tote bag with UOP print — great for carrying books and daily essentials.',
+                              'A warm beanie featuring the UOP logo — perfect for colder days and outdoor activities.',
                         ),
                       ],
                     ),

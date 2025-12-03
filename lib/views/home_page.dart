@@ -5,7 +5,7 @@ import 'package:union_shop/views/products_page.dart';
 import 'package:union_shop/views/about_us.dart';
 import 'package:union_shop/widgets/widgets.dart';
 import 'package:union_shop/views/collections.dart';
-import 'package:union_shop/views/discount_page.dart';
+
 
 class UnionShopApp extends StatelessWidget {
   const UnionShopApp({super.key});
@@ -29,7 +29,6 @@ class UnionShopApp extends StatelessWidget {
         '/about_us': (context) => const AboutUsScreen(),
         '/collections': (context) => const CollectionsScreen(),
         '/authentication': (context) => const AuthenticatioScreen(),
-        '/discount_page': (context) => const DiscountPageScreen(),
       },
     );
   }
@@ -62,9 +61,6 @@ class HomeScreen extends StatelessWidget {
     Navigator.pushNamed(context, '/authentication');
   }
 
-  void navigateToDiscounts(BuildContext context) {
-      Navigator.pushNamed(context, '/discount_page');
-    }
 
 
   @override
@@ -162,7 +158,7 @@ class HomeScreen extends StatelessWidget {
                           MediaQuery.of(context).size.width > 600 ? 2 : 1,
                       crossAxisSpacing: 24,
                       mainAxisSpacing: 48,
-                      children: const [
+                      children: [
                         ProductCard(
                           title: 'UOP Magnet',
                           price: '£10.00',
