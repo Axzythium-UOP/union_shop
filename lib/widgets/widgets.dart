@@ -50,6 +50,11 @@ class CustomHeader extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Use a fixed banner height and size the main header area to avoid Expanded
+    // trying to allocate space that causes overflow when the window is small.
+    const double bannerHeight = 32;
+    final double mainAreaHeight = (height - bannerHeight) < 0 ? 0 : (height - bannerHeight);
+
     return Container(
       height: height,
       color: Colors.white,
@@ -58,8 +63,9 @@ class CustomHeader extends StatelessWidget implements PreferredSizeWidget {
           // Top purple banner
           Container(
             width: double.infinity,
-            padding: const EdgeInsets.symmetric(vertical: 8),
+            height: bannerHeight,
             color: const Color(0xFF4d2963),
+            alignment: Alignment.center,
             child: const Text(
               'Free shipping on orders over £30!',
               textAlign: TextAlign.center,
@@ -67,7 +73,8 @@ class CustomHeader extends StatelessWidget implements PreferredSizeWidget {
             ),
           ),
           // Main header row
-          Expanded(
+          SizedBox(
+            height: mainAreaHeight,
             child: Container(
               padding: const EdgeInsets.symmetric(horizontal: 10),
               child: Row(
@@ -93,108 +100,110 @@ class CustomHeader extends StatelessWidget implements PreferredSizeWidget {
                     ),
                   ),
                   const SizedBox(width: 16),
-                  ConstrainedBox(
-                    constraints: const BoxConstraints(maxWidth: 800),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        ElevatedButton(
-                          onPressed: () => _goAbout(context),
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.white,
-                            foregroundColor: const Color(0xFF4d2963),
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 12, vertical: 6),
-                            textStyle: const TextStyle(fontSize: 12),
-                            shape: const RoundedRectangleBorder(
-                              borderRadius: BorderRadius.zero,
-                              side: BorderSide(color: Color(0xFF4d2963)),
+                  Flexible(
+                    child: ConstrainedBox(
+                      constraints: const BoxConstraints(maxWidth: 800),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          ElevatedButton(
+                            onPressed: () => _goAbout(context),
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: Colors.white,
+                              foregroundColor: const Color(0xFF4d2963),
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 12, vertical: 6),
+                              textStyle: const TextStyle(fontSize: 12),
+                              shape: const RoundedRectangleBorder(
+                                borderRadius: BorderRadius.zero,
+                                side: BorderSide(color: Color(0xFF4d2963)),
+                              ),
                             ),
+                            child: const Text('ABOUT US'),
                           ),
-                          child: const Text('ABOUT US'),
-                        ),
-                        const SizedBox(width: 20),
-                        ElevatedButton(
-                          onPressed: () => _goHome(context),
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.white,
-                            foregroundColor: const Color(0xFF4d2963),
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 12, vertical: 6),
-                            textStyle: const TextStyle(fontSize: 12),
-                            shape: const RoundedRectangleBorder(
-                              borderRadius: BorderRadius.zero,
-                              side: BorderSide(color: Color(0xFF4d2963)),
+                          const SizedBox(width: 20),
+                          ElevatedButton(
+                            onPressed: () => _goHome(context),
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: Colors.white,
+                              foregroundColor: const Color(0xFF4d2963),
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 12, vertical: 6),
+                              textStyle: const TextStyle(fontSize: 12),
+                              shape: const RoundedRectangleBorder(
+                                borderRadius: BorderRadius.zero,
+                                side: BorderSide(color: Color(0xFF4d2963)),
+                              ),
                             ),
+                            child: const Text('HOME'),
                           ),
-                          child: const Text('HOME'),
-                        ),
-                        const SizedBox(width: 10),
-                        ConstrainedBox(
-                          constraints: const BoxConstraints(maxWidth: 600),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              const IconButton(
-                                icon: Icon(
-                                  Icons.search,
-                                  size: 18,
-                                  color: Colors.grey,
+                          const SizedBox(width: 10),
+                          ConstrainedBox(
+                            constraints: const BoxConstraints(maxWidth: 600),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                IconButton(
+                                  icon: const Icon(
+                                    Icons.search,
+                                    size: 18,
+                                    color: Colors.grey,
+                                  ),
+                                  padding: const EdgeInsets.all(8),
+                                  constraints: const BoxConstraints(
+                                    minWidth: 32,
+                                    minHeight: 32,
+                                  ),
+                                  onPressed: _noop,
                                 ),
-                                padding: EdgeInsets.all(8),
-                                constraints: BoxConstraints(
-                                  minWidth: 32,
-                                  minHeight: 32,
+                                const SizedBox(width: 8),
+                                IconButton(
+                                  icon: const Icon(
+                                    Icons.person_outline,
+                                    size: 18,
+                                    color: Colors.grey,
+                                  ),
+                                  padding: const EdgeInsets.all(8),
+                                  constraints: const BoxConstraints(
+                                    minWidth: 32,
+                                    minHeight: 32,
+                                  ),
+                                  onPressed: () => _goAuthentication(context),
                                 ),
-                                onPressed: _noop,
-                              ),
-                              const SizedBox(width: 8),
-                              IconButton(
-                                icon: const Icon(
-                                  Icons.person_outline,
-                                  size: 18,
-                                  color: Colors.grey,
+                                const SizedBox(width: 8),
+                                IconButton(
+                                  icon: const Icon(
+                                    Icons.shopping_bag_outlined,
+                                    size: 18,
+                                    color: Colors.grey,
+                                  ),
+                                  padding: const EdgeInsets.all(8),
+                                  constraints: const BoxConstraints(
+                                    minWidth: 32,
+                                    minHeight: 32,
+                                  ),
+                                  onPressed: _noop,
                                 ),
-                                padding: const EdgeInsets.all(8),
-                                constraints: const BoxConstraints(
-                                  minWidth: 32,
-                                  minHeight: 32,
+                                const SizedBox(width: 8),
+                                IconButton(
+                                  icon: const Icon(
+                                    Icons.menu,
+                                    size: 18,
+                                    color: Colors.grey,
+                                  ),
+                                  padding: const EdgeInsets.all(8),
+                                  constraints: const BoxConstraints(
+                                    minWidth: 32,
+                                    minHeight: 32,
+                                  ),
+                                  onPressed: _noop,
                                 ),
-                                onPressed: () => _goAuthentication(context),
-                              ),
-                              const SizedBox(width: 8),
-                              const IconButton(
-                                icon: Icon(
-                                  Icons.shopping_bag_outlined,
-                                  size: 18,
-                                  color: Colors.grey,
-                                ),
-                                padding: EdgeInsets.all(8),
-                                constraints: BoxConstraints(
-                                  minWidth: 32,
-                                  minHeight: 32,
-                                ),
-                                onPressed: _noop,
-                              ),
-                              const SizedBox(width: 8),
-                              const IconButton(
-                                icon: Icon(
-                                  Icons.menu,
-                                  size: 18,
-                                  color: Colors.grey,
-                                ),
-                                padding: EdgeInsets.all(8),
-                                constraints: BoxConstraints(
-                                  minWidth: 32,
-                                  minHeight: 32,
-                                ),
-                                onPressed: _noop,
-                              ),
-                            ],
-                          ),
-                        )
-                      ],
+                              ],
+                            ),
+                          )
+                        ],
+                      ),
                     ),
                   ),
                 ],
