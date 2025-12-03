@@ -14,29 +14,49 @@ class CollectionsScreen extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
           child: Align(
             alignment: Alignment.topCenter,
-            child: Column(
+            child: Row(
               mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                // Using 'assets/images/Sales.png' from the assets/images folder
-                GestureDetector(
-                  onTap: () {
-                    Navigator.pushNamed(context, '/products_page');
-                  },
-                  child: SizedBox(
-                    height: 200, // give the image a constrained height so it displays reliably
-                    child: Image.asset(
-                      'assets/images/Sales.png',
-                      fit: BoxFit.contain,
-                      // graceful fallback if the asset is missing
-                      errorBuilder: (context, error, stackTrace) => const Icon(
-                        Icons.broken_image,
-                        size: 80,
-                        color: Colors.grey,
+                Expanded(
+                  child: GestureDetector(
+                    onTap: () {
+                      Navigator.pushNamed(context, '/products_page');
+                    },
+                    child: SizedBox(
+                      height: 200,
+                      child: Image.asset(
+                        'assets/images/Sales.png',
+                        fit: BoxFit.contain,
+                        errorBuilder: (context, error, stackTrace) => const Icon(
+                          Icons.broken_image,
+                          size: 80,
+                          color: Colors.grey,
+                        ),
                       ),
                     ),
                   ),
                 ),
-
+                const SizedBox(width: 12), // slight gap between images
+                Expanded(
+                  child: GestureDetector(
+                    onTap: () {
+                      Navigator.pushNamed(context, '/discount_page');
+                    },
+                    child: SizedBox(
+                      height: 200,
+                      child: Image.asset(
+                        'assets/images/Discounted.png',
+                        fit: BoxFit.contain,
+                        errorBuilder: (context, error, stackTrace) => const Icon(
+                          Icons.broken_image,
+                          size: 80,
+                          color: Colors.grey,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
               ],
             ),
           ),
