@@ -162,7 +162,7 @@ class HomeScreen extends StatelessWidget {
                           MediaQuery.of(context).size.width > 600 ? 2 : 1,
                       crossAxisSpacing: 24,
                       mainAxisSpacing: 48,
-                      children: [
+                      children: const [
                         ProductCard(
                           title: 'UOP Magnet',
                           price: '£10.00',
