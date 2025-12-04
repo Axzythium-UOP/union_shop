@@ -24,7 +24,7 @@ void main() {
       await tester.pump();
 
       // Check that product cards are displayed
-      expect(find.text('Placeholder Product 1'), findsOneWidget);
+      expect(find.text('UOP Cap'), findsOneWidget);
       expect(find.text('Placeholder Product 2'), findsOneWidget);
       expect(find.text('Placeholder Product 3'), findsOneWidget);
       expect(find.text('Placeholder Product 4'), findsOneWidget);
