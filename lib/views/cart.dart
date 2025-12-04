@@ -205,9 +205,11 @@ class CartScreen extends StatelessWidget {
                           width: 220,
                           child: OutlinedButton(
                             onPressed: () {
+                              cart.clear();
                               ScaffoldMessenger.of(context).showSnackBar(
                                   const SnackBar(
-                                      content: Text('Checkout placeholder')));
+                                      content:
+                                          Text('Order placed! Cart cleared.')));
                             },
                             child: const Text('Checkout'),
                           ),
