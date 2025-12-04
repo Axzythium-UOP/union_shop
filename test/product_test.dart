@@ -16,9 +16,7 @@ void main() {
       if (details.exception is NetworkImageLoadException) {
         return;
       }
-      if (details.library != 'image resource service') {
-        originalOnError?.call(details);
-      }
+      originalOnError?.call(details);
     };
   });
 

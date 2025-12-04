@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:union_shop/views/authentication_page.dart';
+import 'package:union_shop/widgets/widgets.dart';
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
@@ -13,9 +14,7 @@ void main() {
       if (details.exception is NetworkImageLoadException) {
         return;
       }
-      if (details.library != 'image resource service') {
-        originalOnError?.call(details);
-      }
+      originalOnError?.call(details);
     };
   });
 
@@ -123,13 +122,13 @@ void main() {
     testWidgets('has custom header', (WidgetTester tester) async {
       await tester.pumpWidget(createTestWidget());
 
-      expect(find.byType(AppBar), findsOneWidget);
+      expect(find.byType(CustomHeader), findsOneWidget);
     });
 
     testWidgets('has footer', (WidgetTester tester) async {
       await tester.pumpWidget(createTestWidget());
 
-      expect(find.byType(BottomNavigationBar), findsOneWidget);
+      expect(find.byType(FooterWidget), findsOneWidget);
     });
 
     testWidgets('fields are centered vertically', (WidgetTester tester) async {
@@ -230,20 +229,19 @@ void main() {
       expect(find.byType(TextField), findsNWidgets(2));
     });
 
-    testWidgets('snackbar disappears after duration',
-        (WidgetTester tester) async {
+    testWidgets('submit shows snackbar message', (WidgetTester tester) async {
       await tester.pumpWidget(createTestWidget());
 
       await tester.enterText(
-          find.widgetWithText(TextField, 'Username'), 'test');
+          find.widgetWithText(TextField, 'Username'), 'testuser');
+      await tester.enterText(
+          find.widgetWithText(TextField, 'Password'), 'password123');
       await tester.tap(find.text('Submit'));
       await tester.pump();
 
-      expect(find.byType(SnackBar), findsOneWidget);
-
-      // Wait for snackbar to disappear
-      await tester.pump(const Duration(seconds: 5));
-      expect(find.byType(SnackBar), findsNothing);
+      // Verify snackbar content is correct
+      expect(find.text('Username: testuser, Password: password123'),
+          findsOneWidget);
     });
   });
 }

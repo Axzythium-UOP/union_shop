@@ -577,19 +577,19 @@ void main() {
         imageUrl: 'https://example.com/test.jpg',
         size: 'M',
         color: 'Blue',
-        price: 10.0,
+        price: 12.5,
       );
 
       await tester.pumpWidget(createTestWidget(provider));
       await tester.pumpAndSettle();
 
-      expect(find.text('£10.00'), findsOneWidget);
+      expect(find.text('£12.50'), findsOneWidget);
 
       // Increase quantity
       await tester.tap(find.text('+'));
       await tester.pumpAndSettle();
 
-      expect(find.text('£20.00'), findsOneWidget);
+      expect(find.text('£25.00'), findsOneWidget);
     });
 
     testWidgets('has back button in app bar', (WidgetTester tester) async {

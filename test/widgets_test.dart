@@ -10,16 +10,11 @@ void main() {
   final originalOnError = FlutterError.onError;
 
   setUpAll(() {
-    // Completely suppress network image errors and other expected test errors
     FlutterError.onError = (FlutterErrorDetails details) {
-      // Silently ignore network image errors during tests
       if (details.exception is NetworkImageLoadException) {
         return;
       }
-      // Only show unexpected errors
-      if (details.library != 'image resource service') {
-        originalOnError?.call(details);
-      }
+      originalOnError?.call(details);
     };
   });
 
