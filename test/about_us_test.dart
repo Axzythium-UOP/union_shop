@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:union_shop/views/about_us.dart';
+import 'package:union_shop/widgets/widgets.dart';
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
@@ -51,13 +52,13 @@ void main() {
     testWidgets('has custom header', (WidgetTester tester) async {
       await tester.pumpWidget(createTestWidget());
 
-      expect(find.byType(AppBar), findsOneWidget);
+      expect(find.byType(CustomHeader), findsOneWidget);
     });
 
     testWidgets('has footer', (WidgetTester tester) async {
       await tester.pumpWidget(createTestWidget());
 
-      expect(find.byType(BottomNavigationBar), findsOneWidget);
+      expect(find.byType(FooterWidget), findsOneWidget);
     });
 
     testWidgets('has scaffold', (WidgetTester tester) async {
